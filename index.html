@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         * { box-sizing: border-box; }
-        
         body {
             margin: 0;
             padding: 5px;
@@ -23,7 +22,6 @@
             position: relative;
             overflow-x: hidden;
         }
-
         .watercolor-bg {
             position: fixed;
             top: 0;
@@ -36,7 +34,6 @@
             opacity: 0.3;
             z-index: 0;
         }
-
         .form-card {
             position: relative;
             z-index: 10;
@@ -52,14 +49,12 @@
             text-align: center;
             margin: auto;
         }
-
         h1 {
             font-family: 'Arimo', sans-serif;
             color: #1a2a44;
             font-size: 32px;
             margin: 0 0 5px 0;
         }
-
         .subtitle {
             color: #d4af37;
             font-size: 18px;
@@ -67,7 +62,6 @@
             margin-bottom: 20px;
             line-height: 1.4;
         }
-
         .name-input {
             width: 100%;
             padding: 12px;
@@ -78,14 +72,12 @@
             text-align: center;
             font-family: inherit;
         }
-
         .rsvp-toggle {
             display: flex;
             justify-content: center;
             gap: 10px;
             margin-bottom: 20px;
         }
-
         .toggle-btn {
             flex: 1;
             padding: 10px 5px;
@@ -98,19 +90,8 @@
             align-items: center;
             gap: 4px;
         }
-
-        .toggle-btn.active-yes {
-            background-color: #1a2a44;
-            color: white;
-            border-color: #1a2a44;
-        }
-
-        .toggle-btn.active-no {
-            background-color: #7f1d1d;
-            color: white;
-            border-color: #7f1d1d;
-        }
-
+        .toggle-btn.active-yes { background-color: #1a2a44; color: white; border-color: #1a2a44; }
+        .toggle-btn.active-no { background-color: #7f1d1d; color: white; border-color: #7f1d1d; }
         .toggle-btn p { margin: 0; font-size: 12px; opacity: 0.9; }
         .toggle-btn i { font-size: 18px; }
         .toggle-btn span { font-size: 15px; font-weight: 700; }
@@ -122,7 +103,6 @@
             margin-bottom: 20px;
             width: 100%;
         }
-
         .counter-group {
             flex: 1;
             background: #fdfdfd;
@@ -131,7 +111,6 @@
             border: 1px solid #f1f1f1;
             max-width: 48%;
         }
-
         .counter-label {
             font-size: 15px;
             font-weight: 600;
@@ -139,14 +118,12 @@
             margin-bottom: 5px;
             display: block;
         }
-
         .counter-controls {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
         }
-
         .control-btn {
             width: 32px;
             height: 32px;
@@ -162,8 +139,6 @@
             user-select: none;
             font-weight: bold;
         }
-
-        .control-btn:hover { background: #d4af37; color: white; }
         .counter-value { font-size: 18px; font-weight: 700; color: #1a2a44; width: 20px; text-align: center;}
 
         .submit-btn {
@@ -178,12 +153,15 @@
             width: 100%;
             box-shadow: 0 8px 15px rgba(26, 42, 68, 0.2);
         }
-
         .footer-info {
             margin-top: 15px;
             font-size: 12px;
             color: #64748b;
             line-height: 1.4;
+        }
+        /* הסתרת החלון שמקבל את השגיאות של גוגל */
+        #hidden_iframe {
+            display: none;
         }
     </style>
 </head>
@@ -191,45 +169,54 @@
 
 <div class="watercolor-bg"></div>
 
-<div class="form-card">
+<iframe name="hidden_iframe" id="hidden_iframe"></iframe>
+
+<div class="form-card" id="mainFormCard">
     <h1>אישור הגעה</h1>
     <div class="subtitle">נשמח לראותכם בין אורחנו <br>בשמחת בר המצווה של אוריאל יצחק</div>
 
-    <input type="text" id="guestName" class="name-input" placeholder="נא לכתוב את שמכם המלא" required>
+    <form action="https://docs.google.com/forms/d/e/1FAIpQLSf__RAqcS81CkBbmSEH6TqslCMG3OxURhXNhUbhwfhYPHo-aQ/formResponse" method="POST" target="hidden_iframe" id="rsvpForm">
+        
+        <input type="text" name="entry.1843232049" id="guestName" class="name-input" placeholder="נא לכתוב את שמכם המלא" required>
 
-    <div class="rsvp-toggle">
-        <button type="button" class="toggle-btn active-yes" id="btnYes" onclick="document.getElementById('btnYes').className='toggle-btn active-yes'; document.getElementById('btnNo').className='toggle-btn'; document.getElementById('counters').style.opacity='1'; document.getElementById('counters').style.pointerEvents='auto'; document.getElementById('menCount').innerText='1'; document.getElementById('womenCount').innerText='1';">
-            <i class="fa-solid fa-check"></i>
-            <span>בטח שנגיע!</span>
-            <p>נשמח לחגוג איתכם</p>
-        </button>
-        <button type="button" class="toggle-btn" id="btnNo" onclick="document.getElementById('btnYes').className='toggle-btn'; document.getElementById('btnNo').className='toggle-btn active-no'; document.getElementById('counters').style.opacity='0.3'; document.getElementById('counters').style.pointerEvents='none'; document.getElementById('menCount').innerText='0'; document.getElementById('womenCount').innerText='0';">
-            <i class="fa-solid fa-xmark"></i>
-            <span>לא נוכל להגיע</span>
-            <p>נשמח לחגוג בשמחות הבאות</p>
-        </button>
-    </div>
+        <div class="rsvp-toggle">
+            <button type="button" class="toggle-btn active-yes" id="btnYes" onclick="document.getElementById('btnYes').className='toggle-btn active-yes'; document.getElementById('btnNo').className='toggle-btn'; document.getElementById('counters').style.opacity='1'; document.getElementById('counters').style.pointerEvents='auto'; document.getElementById('menInput').value='1'; document.getElementById('womenInput').value='1'; document.getElementById('menCount').innerText='1'; document.getElementById('womenCount').innerText='1';">
+                <i class="fa-solid fa-check"></i>
+                <span>בטח שנגיע!</span>
+                <p>נשמח לחגוג איתכם</p>
+            </button>
+            <button type="button" class="toggle-btn" id="btnNo" onclick="document.getElementById('btnYes').className='toggle-btn'; document.getElementById('btnNo').className='toggle-btn active-no'; document.getElementById('counters').style.opacity='0.3'; document.getElementById('counters').style.pointerEvents='none'; document.getElementById('menInput').value='0'; document.getElementById('womenInput').value='0'; document.getElementById('menCount').innerText='0'; document.getElementById('womenCount').innerText='0';">
+                <i class="fa-solid fa-xmark"></i>
+                <span>לא נוכל להגיע</span>
+                <p>נשמח לחגוג בשמחות הבאות</p>
+            </button>
+        </div>
 
-    <div class="counter-section" id="counters">
-        <div class="counter-group">
-            <span class="counter-label">כמות גברים</span>
-            <div class="counter-controls">
-                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menCount').innerText); if(val>0){document.getElementById('menCount').innerText=val-1;}">-</button>
-                <span class="counter-value" id="menCount">1</span>
-                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menCount').innerText); document.getElementById('menCount').innerText=val+1;">+</button>
+        <input type="hidden" name="entry.170669176" id="menInput" value="1">
+        <input type="hidden" name="entry.507421160" id="womenInput" value="1">
+
+        <div class="counter-section" id="counters">
+            <div class="counter-group">
+                <span class="counter-label">כמות גברים</span>
+                <div class="counter-controls">
+                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menInput').value); if(val>0){document.getElementById('menInput').value=val-1; document.getElementById('menCount').innerText=val-1;}">-</button>
+                    <span class="counter-value" id="menCount">1</span>
+                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menInput').value); document.getElementById('menInput').value=val+1; document.getElementById('menCount').innerText=val+1;">+</button>
+                </div>
+            </div>
+            <div class="counter-group">
+                <span class="counter-label">כמות נשים</span>
+                <div class="counter-controls">
+                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenInput').value); if(val>0){document.getElementById('womenInput').value=val-1; document.getElementById('womenCount').innerText=val-1;}">-</button>
+                    <span class="counter-value" id="womenCount">1</span>
+                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenInput').value); document.getElementById('womenInput').value=val+1; document.getElementById('womenCount').innerText=val+1;">+</button>
+                </div>
             </div>
         </div>
-        <div class="counter-group">
-            <span class="counter-label">כמות נשים</span>
-            <div class="counter-controls">
-                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenCount').innerText); if(val>0){document.getElementById('womenCount').innerText=val-1;}">-</button>
-                <span class="counter-value" id="womenCount">1</span>
-                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenCount').innerText); document.getElementById('womenCount').innerText=val+1;">+</button>
-            </div>
-        </div>
-    </div>
 
-    <button type="button" class="submit-btn" onclick="var name=document.getElementById('guestName').value.trim(); if(!name){alert('נא למלא שם מלא');}else{ var men=document.getElementById('menCount').innerText; var women=document.getElementById('womenCount').innerText; var status=(men==='0'&&women==='0')?'לא מגיע':'מגיע'; alert('תודה ' + name + '! אישור ההגעה נשלח בהצלחה ומחכה לכם.'); window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSf__RAqcS81CkBbmSEH6TqslCMG3OxURhXNhUbhwfhYPHo-aQ/formResponse?entry.1843232049='+encodeURIComponent(name)+'&entry.170669176='+men+'&entry.507421160='+women; }">שלח אישור הגעה</button>
+        <button type="submit" class="submit-btn" onclick="var name=document.getElementById('guestName').value.trim(); if(name){ setTimeout(function(){ document.getElementById('mainFormCard').innerHTML='<h1 style=\"color:#1a2a44; margin-bottom:15px;\">תודה רבה!</h1><p style=\"font-size:18px; color:#64748b; line-height:1.6;\">אישור ההגעה שלך נרשם בהצלחה.<br>נשמח לראותכם בשמחת בר המצווה של אוריאל יצחק!</p><div style=\"margin-top:25px; font-size:14px; color:#bfa15f; font-weight:600;\">באולם \"שבט הלוי\", בית שמש</div>'; }, 500); }">שלח אישור הגעה</button>
+    
+    </form>
     
     <div class="footer-info">
         אולם "שבט הלוי", נחל שורק 25, בית שמש
