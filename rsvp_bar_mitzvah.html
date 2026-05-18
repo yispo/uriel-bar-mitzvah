@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אישור הגעה - אוריאל יצחק</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Arimo:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            padding: 10px;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Assistant', sans-serif;
+            position: relative;
+        }
+        .watercolor-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('bg.jpg');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+            z-index: 0;
+        }
+        .form-card {
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 30px 20px;
+            width: 100%;
+            max-width: 500px;
+            box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15);
+            text-align: center;
+        }
+        h1 {
+            font-family: 'Arimo', sans-serif;
+            color: #1a2a44;
+            font-size: 36px;
+            margin: 0 0 5px 0;
+        }
+        .subtitle {
+            color: #d4af37;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+        .name-input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            margin-bottom: 20px;
+            font-size: 16px;
+            text-align: center;
+            font-family: inherit;
+        }
+        .rsvp-toggle {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        .toggle-btn {
+            flex: 1;
+            padding: 12px 8px;
+            border-radius: 12px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .toggle-btn.active-yes { background-color: #1a2a44; color: white; border-color: #1a2a44; }
+        .toggle-btn.active-no { background-color: #7f1d1d; color: white; border-color: #7f1d1d; }
+        .toggle-btn p { margin: 0; font-size: 13px; opacity: 0.9; }
+        .toggle-btn i { font-size: 20px; }
+        .toggle-btn span { font-size: 16px; font-weight: 700; }
+        .counter-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 25px;
+            transition: all 0.3s ease;
+        }
+        @media (max-width: 380px) { .counter-section { grid-template-columns: 1fr; } }
+        .counter-group { background: #fdfdfd; border-radius: 12px; padding: 12px; border: 1px solid #f1f1f1; }
+        .counter-label { font-size: 16px; font-weight: 600; color: #1a2a44; margin-bottom: 8px; display: block; }
+        .counter-controls { display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .control-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid #d4af37;
+            background: white;
+            color: #d4af37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+            user-select: none;
+            font-weight: bold;
+        }
+        .control-btn:hover { background: #d4af37; color: white; }
+        .counter-value { font-size: 22px; font-weight: 700; color: #1a2a44; width: 25px; }
+        .submit-btn {
+            background: linear-gradient(135deg, #1a2a44 0%, #2e4d68 100%);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            width: 100%;
+            box-shadow: 0 8px 15px rgba(26, 42, 68, 0.2);
+        }
+        .footer-info { margin-top: 20px; font-size: 14px; color: #64748b; line-height: 1.4; }
+    </style>
+</head>
+<body>
+<div class="watercolor-bg"></div>
+<div class="form-card">
+    <h1>אישור הגעה</h1>
+    <div class="subtitle">נשמח לראותכם בין אורחנו <br>בשמחת בר המצווה של אוריאל יצחק</div>
+    <input type="text" id="guestName" class="name-input" placeholder="נא לכתוב את שמכם המלא" required>
+    <div class="rsvp-toggle">
+        <div class="toggle-btn active-yes" id="btnYes" onclick="setResponse(true)">
+            <i class="fa-solid fa-check"></i>
+            <span>בטח שנגיע!</span>
+            <p>נשמח לחגוג איתכם</p>
+        </div>
+        <div class="toggle-btn" id="btnNo" onclick="setResponse(false)">
+            <i class="fa-solid fa-xmark"></i>
+            <span>לא נוכל להגיע</span>
+            <p>נשמח לחגוג בשמחות הבאות</p>
+        </div>
+    </div>
+    <div class="counter-section" id="counters">
+        <div class="counter-group">
+            <span class="counter-label">כמות גברים</span>
+            <div class="counter-controls">
+                <div class="control-btn" onclick="changeValue('men', -1)">-</div>
+                <span class="counter-value" id="menCount">1</span>
+                <div class="control-btn" onclick="changeValue('men', 1)">+</div>
+            </div>
+        </div>
+        <div class="counter-group">
+            <span class="counter-label">כמות נשים</span>
+            <div class="counter-controls">
+                <div class="control-btn" onclick="changeValue('women', -1)">-</div>
+                <span class="counter-value" id="womenCount">1</span>
+                <div class="control-btn" onclick="changeValue('women', 1)">+</div>
+            </div>
+        </div>
+    </div>
+    <button class="submit-btn" onclick="sendData()">שלח אישור הגעה</button>
+    <div class="footer-info">אולם "שבט הלוי", נחל שורק 25, בית שמש</div>
+</div>
+</body>
+</html>
