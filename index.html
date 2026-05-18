@@ -90,16 +90,8 @@
             align-items: center;
             gap: 6px;
         }
-        .toggle-btn.active-yes {
-            background-color: #1a2a44;
-            color: white;
-            border-color: #1a2a44;
-        }
-        .toggle-btn.active-no {
-            background-color: #881337;
-            color: white;
-            border-color: #881337;
-        }
+        .toggle-btn.active-yes { background-color: #1a2a44; color: white; border-color: #1a2a44; }
+        .toggle-btn.active-no { background-color: #881337; color: white; border-color: #881337; }
         .toggle-btn p { margin: 0; font-size: 13px; opacity: 0.85; }
         .toggle-btn i { font-size: 20px; }
         .toggle-btn span { font-size: 17px; font-weight: 700; }
@@ -176,12 +168,12 @@
     <input type="text" id="guestName" class="name-input" placeholder="נא לכתוב את שמכם המלא" required>
 
     <div class="rsvp-toggle">
-        <button type="button" class="toggle-btn active-yes" id="btnYes">
+        <button type="button" class="toggle-btn active-yes" id="btnYes" onclick="document.getElementById('btnYes').className='toggle-btn active-yes'; document.getElementById('btnNo').className='toggle-btn'; document.getElementById('counters').style.opacity='1'; document.getElementById('counters').style.pointerEvents='auto'; document.getElementById('menCount').innerText='1'; document.getElementById('womenCount').innerText='1';">
             <i class="fa-solid fa-check"></i>
             <span>בטח שנגיע!</span>
             <p>נשמח לחגוג איתכם</p>
         </button>
-        <button type="button" class="toggle-btn" id="btnNo">
+        <button type="button" class="toggle-btn" id="btnNo" onclick="document.getElementById('btnYes').className='toggle-btn'; document.getElementById('btnNo').className='toggle-btn active-no'; document.getElementById('counters').style.opacity='0.3'; document.getElementById('counters').style.pointerEvents='none'; document.getElementById('menCount').innerText='0'; document.getElementById('womenCount').innerText='0';">
             <i class="fa-solid fa-xmark"></i>
             <span>לא נוכל להגיע</span>
             <p>נשמח לחגוג בשמחות הבאות</p>
@@ -192,109 +184,27 @@
         <div class="counter-group">
             <span class="counter-label">כמות גברים</span>
             <div class="counter-controls">
-                <button type="button" class="control-btn" id="minusMen">-</button>
+                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menCount').innerText); if(val>0){document.getElementById('menCount').innerText=val-1;}">-</button>
                 <span class="counter-value" id="menCount">1</span>
-                <button type="button" class="control-btn" id="plusMen">+</button>
+                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menCount').innerText); document.getElementById('menCount').innerText=val+1;">+</button>
             </div>
         </div>
         <div class="counter-group">
             <span class="counter-label">כמות נשים</span>
             <div class="counter-controls">
-                <button type="button" class="control-btn" id="minusWomen">-</button>
+                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenCount').innerText); if(val>0){document.getElementById('womenCount').innerText=val-1;}">-</button>
                 <span class="counter-value" id="womenCount">1</span>
-                <button type="button" class="control-btn" id="plusWomen">+</button>
+                <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenCount').innerText); document.getElementById('womenCount').innerText=val+1;">+</button>
             </div>
         </div>
     </div>
 
-    <button type="button" class="submit-btn" id="submitBtn">שלח אישור הגעה</button>
+    <button type="button" class="submit-btn" onclick="var name=document.getElementById('guestName').value.trim(); if(!name){alert('נא למלא שם מלא');}else{ var men=document.getElementById('menCount').innerText; var women=document.getElementById('womenCount').innerText; var status=(men==='0'&&women==='0')?'לא מגיע':'מגיע'; alert('תודה ' + name + '! אישור ההגעה נשלח בהצלחה ומחכה לכם.'); window.location.href='https://docs.google.com/forms/d/e/1FAIpQLSf__RAqcS81CkBbmSEH6TqslCMG3OxURhXNhUbhwfhYPHo-aQ/formResponse?entry.1843232049='+encodeURIComponent(name)+'&entry.170669176='+men+'&entry.507421160='+women; }">שלח אישור הגעה</button>
     
     <div class="footer-info">
         באולם "שבט הלוי"<br>נחל שורק 25, בית שמש
     </div>
 </div>
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var isAttending = true;
-        var men = 1;
-        var women = 1;
-
-        var btnYes = document.getElementById('btnYes');
-        var btnNo = document.getElementById('btnNo');
-        var counters = document.getElementById('counters');
-        var menCount = document.getElementById('menCount');
-        var womenCount = document.getElementById('womenCount');
-
-        btnYes.addEventListener('click', function() {
-            isAttending = true;
-            btnYes.className = "toggle-btn active-yes";
-            btnNo.className = "toggle-btn";
-            counters.style.opacity = "1";
-            counters.style.pointerEvents = "auto";
-            men = 1; women = 1;
-            menCount.innerText = "1";
-            womenCount.innerText = "1";
-        });
-
-        btnNo.addEventListener('click', function() {
-            isAttending = false;
-            btnYes.className = "toggle-btn";
-            btnNo.className = "toggle-btn active-no";
-            counters.style.opacity = "0.3";
-            counters.style.pointerEvents = "none";
-            men = 0; women = 0;
-            menCount.innerText = "0";
-            womenCount.innerText = "0";
-        });
-
-        document.getElementById('plusMen').addEventListener('click', function() {
-            if (!isAttending) return;
-            men++;
-            menCount.innerText = men;
-        });
-
-        document.getElementById('minusMen').addEventListener('click', function() {
-            if (!isAttending) return;
-            if (men > 0) {
-                men--;
-                menCount.innerText = men;
-            }
-        });
-
-        document.getElementById('plusWomen').addEventListener('click', function() {
-            if (!isAttending) return;
-            women++;
-            womenCount.innerText = women;
-        });
-
-        document.getElementById('minusWomen').addEventListener('click', function() {
-            if (!isAttending) return;
-            if (women > 0) {
-                women--;
-                womenCount.innerText = women;
-            }
-        });
-
-        document.getElementById('submitBtn').addEventListener('click', function() {
-            var name = document.getElementById('guestName').value.trim();
-            if(!name) { 
-                alert('נא למלא שם מלא'); 
-                return; 
-            }
-
-            var formUrl = "https://docs.google.com/forms/d/e/1FAIpQLSf__RAqcS81CkBbmSEH6TqslCMG3OxURhXNhUbhwfhYPHo-aQ/formResponse";
-            
-            var form = document.createElement('form');
-            form.method = 'POST';
-            form.action = formUrl;
-            form.target = '_blank';
-
-            // שליחת הנתונים ישירות לשדות של גוגל פורמס
-            // הערה: מומלץ לוודא את ה-entry IDs אם הנתונים לא מגיעים תחת השמות הנכונים באקסל
-            alert('תודה ' + name + '! אישור ההגעה שלך נשלח בהצלחה.');
-        });
-    });
-</script>
 </body>
 </html>
