@@ -1,255 +1,98 @@
-ף<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>אישור הגעה - אוריאל יצחק</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Arimo:wght@700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-* { box-sizing: border-box; }
-body {
-margin: 0;
-padding: 5px;
-background-color: #f0f2f5;
-display: flex;
-justify-content: center;
-align-items: center;
-min-height: 100vh;
-font-family: 'Assistant', sans-serif;
-position: relative;
-overflow-x: hidden;
-}
-.watercolor-bg {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover');
-background-size: cover;
-background-position: center;
-opacity: 0.3;
-z-index: 0;
-}
-.form-card {
-position: relative;
-z-index: 10;
-background: rgba(255, 255, 255, 0.95);
-backdrop-filter: blur(8px);
--webkit-backdrop-filter: blur(8px);
-border: 1px solid rgba(212, 175, 55, 0.4);
-border-radius: 20px;
-padding: 25px 15px;
-width: 95%;
-max-width: 480px;
-box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15);
-text-align: center;
-margin: auto;
-}
-h1 {
-font-family: 'Arimo', sans-serif;
-color: #1a2a44;
-font-size: 32px;
-margin: 0 0 5px 0;
-}
-.subtitle {
-color: #d4af37;
-font-size: 18px;
-font-weight: 600;
-margin-bottom: 20px;
-line-height: 1.4;
-}
-.name-input {
-width: 100%;
-padding: 12px;
-border-radius: 12px;
-border: 1px solid #cbd5e1;
-margin-bottom: 15px;
-font-size: 16px;
-text-align: center;
-font-family: inherit;
-}
-.rsvp-toggle {
-display: flex;
-justify-content: center;
-gap: 10px;
-margin-bottom: 20px;
-}
-.toggle-btn {
-flex: 1;
-padding: 10px 5px;
-border-radius: 12px;
-border: 2px solid #e2e8f0;
-background: white;
-cursor: pointer;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 4px;
-}
-.toggle-btn.active-yes { background-color: #1a2a44; color: white; border-color: #1a2a44; }
-.toggle-btn.active-no { background-color: #7f1d1d; color: white; border-color: #7f1d1d; }
-.toggle-btn p { margin: 0; font-size: 12px; opacity: 0.9; }
-.toggle-btn i { font-size: 18px; }
-.toggle-btn span { font-size: 15px; font-weight: 700; }
-
-.counter-section {
-display: flex;
-justify-content: space-between;
-gap: 10px;
-margin-bottom: 20px;
-width: 100%;
-transition: opacity 0.3s;
-}
-.counter-group {
-flex: 1;
-background: #fdfdfd;
-border-radius: 12px;
-padding: 10px;
-border: 1px solid #f1f1f1;
-max-width: 48%;
-}
-.counter-label {
-font-size: 15px;
-font-weight: 600;
-color: #1a2a44;
-margin-bottom: 5px;
-display: block;
-}
-.counter-controls {
-display: flex;
-align-items: center;
-justify-content: center;
-gap: 10px;
-}
-.control-btn {
-width: 32px;
-height: 32px;
-border-radius: 50%;
-border: 1px solid #d4af37;
-background: white;
-color: #d4af37;
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-font-size: 16px;
-user-select: none;
-font-weight: bold;
-}
-.counter-value { font-size: 18px; font-weight: 700; color: #1a2a44; width: 20px; text-align: center;}
-
-.submit-btn {
-background: linear-gradient(135deg, #1a2a44 0%, #2e4d68 100%);
-color: white;
-border: none;
-padding: 12px;
-font-size: 16px;
-font-weight: 700;
-border-radius: 50px;
-cursor: pointer;
-width: 100%;
-box-shadow: 0 8px 15px rgba(26, 42, 68, 0.2);
-}
-.footer-info {
-margin-top: 15px;
-font-size: 12px;
-color: #64748b;
-line-height: 1.4;
-}
-
-/* אלמנט מוסתר לחלוטין שמיועד לעקיפת האבטחה של גוגל */
-#hidden_iframe {
-display: none;
-width: 0;
-height: 0;
-border: 0;
-}
+    * { box-sizing: border-box; }
+    body { margin: 0; padding: 5px; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: 'Assistant', sans-serif; }
+    .watercolor-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover'); background-size: cover; background-position: center; opacity: 0.3; z-index: 0; }
+    .form-card { position: relative; z-index: 10; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px 15px; width: 95%; max-width: 480px; box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15); text-align: center; }
+    h1 { font-family: 'Arimo', sans-serif; color: #1a2a44; font-size: 32px; margin: 0 0 5px 0; }
+    .subtitle { color: #d4af37; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
+    .name-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 15px; font-size: 16px; text-align: center; }
+    .rsvp-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
+    .toggle-btn { flex: 1; padding: 10px; border-radius: 12px; border: 2px solid #e2e8f0; background: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
+    .toggle-btn.active-yes { background-color: #1a2a44; color: white; border-color: #1a2a44; }
+    .toggle-btn.active-no { background-color: #7f1d1d; color: white; border-color: #7f1d1d; }
+    .counter-section { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; transition: opacity 0.3s; }
+    .control-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #d4af37; background: white; color: #d4af37; cursor: pointer; font-size: 20px; font-weight: bold; }
+    .counter-value { font-size: 24px; font-weight: 700; color: #1a2a44; margin: 0 15px; }
+    #noResponseMsg { display: none; color: #7f1d1d; font-weight: bold; margin-bottom: 20px; }
+    .submit-btn { background: linear-gradient(135deg, #1a2a44 0%, #2e4d68 100%); color: white; border: none; padding: 12px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; }
 </style>
 </head>
 <body>
 
 <div class="watercolor-bg"></div>
 
-<form id="realRsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf__RAqcS81CkBbmSEH6TqslCMG3OxURhXNhUbhwfhYPHo-aQ/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
-    
+<form id="realRsvpForm" action="YOUR_GOOGLE_FORM_ACTION_URL" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
     <input type="hidden" name="entry.1433589886" id="gName">
-    <input type="hidden" name="entry.1597149823" id="gMen">
-    <input type="hidden" name="entry.1580638204" id="gWomen">
+    <input type="hidden" name="entry.1597149823" id="gGuests">
 
     <div class="form-card">
         <h1>אישור הגעה</h1>
-        <div class="subtitle">נשמח לראותכם בין אורחינו <br>בשמחת בר המצווה של אוריאל יצחק</div>
-
-        <input type="text" id="guestName" class="name-input" placeholder="נא לכתוב את שמכם המלא" required>
+        <div class="subtitle">נשמח לראותכם בין אורחינו בבר המצווה</div>
+        <input type="text" id="guestName" class="name-input" placeholder="שם מלא" required>
 
         <div class="rsvp-toggle">
-            <button type="button" class="toggle-btn active-yes" id="btnYes" onclick="document.getElementById('btnYes').className='toggle-btn active-yes'; document.getElementById('btnNo').className='toggle-btn'; document.getElementById('counters').style.opacity='1'; document.getElementById('counters').style.pointerEvents='auto'; document.getElementById('menCount').innerText='1'; document.getElementById('womenCount').innerText='1';">
-                <i class="fa-solid fa-check"></i>
-                <span>בטח שנגיע!</span>
-                <p>נשמח לחגוג איתכם</p>
+            <button type="button" class="toggle-btn active-yes" id="btnYes" onclick="toggleSelection('yes')">
+                <i class="fa-solid fa-check"></i> <span>נגיע!</span>
             </button>
-            <button type="button" class="toggle-btn" id="btnNo" onclick="document.getElementById('btnYes').className='toggle-btn'; document.getElementById('btnNo').className='toggle-btn active-no'; document.getElementById('counters').style.opacity='0.3'; document.getElementById('counters').style.pointerEvents='none'; document.getElementById('menCount').innerText='0'; document.getElementById('womenCount').innerText='0';">
-                <i class="fa-solid fa-xmark"></i>
-                <span>לא נוכל להגיע</span>
-                <p>נשמח לחגוג בשמחות הבאות</p>
+            <button type="button" class="toggle-btn" id="btnNo" onclick="toggleSelection('no')">
+                <i class="fa-solid fa-xmark"></i> <span>לא נגיע</span>
             </button>
         </div>
 
+        <div id="noResponseMsg">נשמח לחגוג אתכם בשמחות הבאות</div>
+
         <div class="counter-section" id="counters">
-            <div class="counter-group">
-                <span class="counter-label">כמות גברים</span>
-                <div class="counter-controls">
-                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menCount').innerText); if(val>0){document.getElementById('menCount').innerText=val-1;}">-</button>
-                    <span class="counter-value" id="menCount">1</span>
-                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('menCount').innerText); document.getElementById('menCount').innerText=val+1;">+</button>
-                </div>
-            </div>
-            <div class="counter-group">
-                <span class="counter-label">כמות נשים</span>
-                <div class="counter-controls">
-                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenCount').innerText); if(val>0){document.getElementById('womenCount').innerText=val-1;}">-</button>
-                    <span class="counter-value" id="womenCount">1</span>
-                    <button type="button" class="control-btn" onclick="var val=parseInt(document.getElementById('womenCount').innerText); document.getElementById('womenCount').innerText=val+1;">+</button>
-                </div>
+            <span style="margin-bottom: 10px;">כמות אורחים</span>
+            <div style="display: flex; align-items: center;">
+                <button type="button" class="control-btn" onclick="updateCount(-1)">-</button>
+                <span class="counter-value" id="guestCount">1</span>
+                <button type="button" class="control-btn" onclick="updateCount(1)">+</button>
             </div>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">שליחת אישור הגעה</button>
-
-        <div class="footer-info">
-            אולם "שבט הלוי", נחל שורק 25, בית שמש
-        </div>
     </div>
 </form>
 
-<iframe name="hidden_iframe" id="hidden_iframe" onload="if(submitted) {window.location.href='https://yispo.github.io/uriel-bar-mitzvah/thanks.html';}"></iframe>
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) {window.location.href='https://yispo.github.io/uriel-bar-mitzvah/thanks.html';}"></iframe>
 
 <script>
-var submitted = false;
+    var submitted = false;
+    let count = 1;
 
-document.getElementById('realRsvpForm').addEventListener('submit', function(e) {
-    var name = document.getElementById('guestName').value.trim();
-    if (!name) {
-        e.preventDefault();
-        alert('נא למלא שם מלא כדי להמשיך');
-        return;
+    function toggleSelection(type) {
+        if(type === 'yes') {
+            document.getElementById('btnYes').className = 'toggle-btn active-yes';
+            document.getElementById('btnNo').className = 'toggle-btn';
+            document.getElementById('counters').style.display = 'flex';
+            document.getElementById('noResponseMsg').style.display = 'none';
+        } else {
+            document.getElementById('btnYes').className = 'toggle-btn';
+            document.getElementById('btnNo').className = 'toggle-btn active-no';
+            document.getElementById('counters').style.display = 'none';
+            document.getElementById('noResponseMsg').style.display = 'block';
+            count = 0;
+        }
     }
 
-    // מעתיק את הערכים המעודכנים רגע לפני השליחה
-    document.getElementById('gName').value = name;
-    document.getElementById('gMen').value = document.getElementById('menCount').innerText;
-    document.getElementById('gWomen').value = document.getElementById('womenCount').innerText;
+    function updateCount(val) {
+        count = Math.max(0, count + val);
+        document.getElementById('guestCount').innerText = count;
+    }
 
-    var btn = document.getElementById('submitBtn');
-    btn.innerText = 'שולח...';
-    btn.style.pointerEvents = 'none';
-    btn.style.opacity = '0.7';
-});
+    document.getElementById('realRsvpForm').addEventListener('submit', function(e) {
+        document.getElementById('gName').value = document.getElementById('guestName').value;
+        document.getElementById('gGuests').value = count;
+    });
 </script>
 
 </body>
-</html> 
+</html>
