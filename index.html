@@ -8,7 +8,17 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
     * { box-sizing: border-box; }
-    body { margin: 0; padding: 5px; background-color: #f0f2f5; display: flex; justify-content: center; align-items: center; min-height: 100vh; font-family: 'Assistant', sans-serif; }
+    /* שינוי ה-body למרכוז מלא ומדויק ללא רווחים מיותרים */
+    body { 
+        margin: 0; 
+        padding: 0; 
+        background-color: #f0f2f5; 
+        display: flex; 
+        justify-content: center; 
+        align-items: center; 
+        min-height: 100dvh; 
+        font-family: 'Assistant', sans-serif;
+    }
     .watercolor-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover'); background-size: cover; background-position: center; opacity: 0.3; z-index: 0; }
     .form-card { position: relative; z-index: 10; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px 15px; width: 95%; max-width: 480px; box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15); text-align: center; }
     h1 { font-family: 'Arimo', sans-serif; color: #1a2a44; font-size: 32px; margin: 0 0 5px 0; }
@@ -81,7 +91,6 @@
         document.getElementById('btnYes').className = isAttending ? 'toggle-btn active-yes' : 'toggle-btn';
         document.getElementById('btnNo').className = !isAttending ? 'toggle-btn active-no' : 'toggle-btn';
         document.getElementById('detailsSection').style.display = isAttending ? 'block' : 'none';
-        // כפתור השמירה יוצג תמיד לאחר בחירה
         document.getElementById('submitBtn').style.display = 'block';
     }
 
