@@ -31,7 +31,7 @@
 
 <div class="watercolor-bg"></div>
 
-<form id="realRsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf__RAqcS81CkBbmSEH6TqslCMG3OxURhXNhUbhwfhYPHo-aQ/formResponse" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
+<form id="realRsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSf__RAqcS81CkBbmSEH6TqslCMG3OxURhXNhUbhwfhYPHo-aQ/formResponse" method="POST" target="hidden_iframe">
     <input type="hidden" name="entry.1433589886" id="gName">
     <input type="hidden" name="entry.1597149823" id="gGuests">
     <input type="hidden" name="entry.1580638204" id="gNotes">
@@ -64,16 +64,15 @@
             <textarea id="guestNotes" class="note-input" placeholder="הערות מיוחדות"></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">שליחת אישור הגעה</button>
+        <button type="submit" class="submit-btn" id="submitBtn">אישור</button>
     </div>
 </form>
 
 <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
 
 <script>
-    var submitted = false;
     let count = 1;
-    let isAttending = null; // null = לא נבחר עדיין
+    let isAttending = null;
 
     function toggleSelection(type) {
         isAttending = (type === 'yes');
@@ -88,16 +87,22 @@
         document.getElementById('guestCount').innerText = count;
     }
 
-    document.getElementById('realRsvpForm').onsubmit = function() {
+    document.getElementById('realRsvpForm').addEventListener('submit', function(e) {
         if (isAttending === null) {
+            e.preventDefault();
             alert("נא לבחור אם אתם מגיעים או לא.");
-            return false;
+            return;
         }
+        
         document.getElementById('gName').value = document.getElementById('guestName').value;
         document.getElementById('gGuests').value = isAttending ? count : 0;
         document.getElementById('gNotes').value = document.getElementById('guestNotes').value;
-        return true;
-    };
+        
+        // השהייה קלה כדי לוודא שהשדות מתעדכנים לפני השליחה
+        setTimeout(function() {
+            window.location.href = 'https://yispo.github.io/uriel-bar-mitzvah/thanks.html';
+        }, 500);
+    });
 </script>
 
 </body>
