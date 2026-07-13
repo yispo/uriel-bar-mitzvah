@@ -13,12 +13,14 @@
     .form-card { position: relative; z-index: 10; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px 15px; width: 95%; max-width: 480px; box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15); text-align: center; }
     h1 { font-family: 'Arimo', sans-serif; color: #1a2a44; font-size: 32px; margin: 0 0 5px 0; }
     .subtitle { color: #d4af37; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
-    .name-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 15px; font-size: 16px; text-align: center; }
+    .name-input, .note-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 15px; font-size: 16px; text-align: center; font-family: inherit; }
+    .note-input { height: 80px; resize: none; text-align: right; }
     .rsvp-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
     .toggle-btn { flex: 1; padding: 10px; border-radius: 12px; border: 2px solid #e2e8f0; background: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
     .toggle-btn.active-yes { background-color: #1a2a44; color: white; border-color: #1a2a44; }
     .toggle-btn.active-no { background-color: #7f1d1d; color: white; border-color: #7f1d1d; }
-    .counter-section { display: flex; flex-direction: column; align-items: center; margin-bottom: 20px; transition: opacity 0.3s; }
+    .details-section { display: none; margin-bottom: 20px; }
+    .counter-section { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
     .control-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #d4af37; background: white; color: #d4af37; cursor: pointer; font-size: 20px; font-weight: bold; }
     .counter-value { font-size: 24px; font-weight: 700; color: #1a2a44; margin: 0 15px; }
     #noResponseMsg { display: none; color: #7f1d1d; font-weight: bold; margin-bottom: 20px; }
@@ -32,6 +34,7 @@
 <form id="realRsvpForm" action="YOUR_GOOGLE_FORM_ACTION_URL" method="POST" target="hidden_iframe" onsubmit="submitted=true;">
     <input type="hidden" name="entry.1433589886" id="gName">
     <input type="hidden" name="entry.1597149823" id="gGuests">
+    <input type="hidden" name="entry.1580638204" id="gNotes">
 
     <div class="form-card">
         <h1>אישור הגעה</h1>
@@ -39,7 +42,7 @@
         <input type="text" id="guestName" class="name-input" placeholder="שם מלא" required>
 
         <div class="rsvp-toggle">
-            <button type="button" class="toggle-btn active-yes" id="btnYes" onclick="toggleSelection('yes')">
+            <button type="button" class="toggle-btn" id="btnYes" onclick="toggleSelection('yes')">
                 <i class="fa-solid fa-check"></i> <span>נגיע!</span>
             </button>
             <button type="button" class="toggle-btn" id="btnNo" onclick="toggleSelection('no')">
@@ -49,13 +52,16 @@
 
         <div id="noResponseMsg">נשמח לחגוג אתכם בשמחות הבאות</div>
 
-        <div class="counter-section" id="counters">
-            <span style="margin-bottom: 10px;">כמות אורחים</span>
-            <div style="display: flex; align-items: center;">
-                <button type="button" class="control-btn" onclick="updateCount(-1)">-</button>
-                <span class="counter-value" id="guestCount">1</span>
-                <button type="button" class="control-btn" onclick="updateCount(1)">+</button>
+        <div id="detailsSection" class="details-section">
+            <div class="counter-section">
+                <span style="margin-bottom: 10px; font-weight: bold;">כמה אתם?</span>
+                <div style="display: flex; align-items: center;">
+                    <button type="button" class="control-btn" onclick="updateCount(-1)">-</button>
+                    <span class="counter-value" id="guestCount">1</span>
+                    <button type="button" class="control-btn" onclick="updateCount(1)">+</button>
+                </div>
             </div>
+            <textarea id="guestNotes" class="note-input" placeholder="הערות מיוחדות"></textarea>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">שליחת אישור הגעה</button>
@@ -72,25 +78,26 @@
         if(type === 'yes') {
             document.getElementById('btnYes').className = 'toggle-btn active-yes';
             document.getElementById('btnNo').className = 'toggle-btn';
-            document.getElementById('counters').style.display = 'flex';
+            document.getElementById('detailsSection').style.display = 'block';
             document.getElementById('noResponseMsg').style.display = 'none';
         } else {
             document.getElementById('btnYes').className = 'toggle-btn';
             document.getElementById('btnNo').className = 'toggle-btn active-no';
-            document.getElementById('counters').style.display = 'none';
+            document.getElementById('detailsSection').style.display = 'none';
             document.getElementById('noResponseMsg').style.display = 'block';
             count = 0;
         }
     }
 
     function updateCount(val) {
-        count = Math.max(0, count + val);
+        count = Math.max(1, count + val);
         document.getElementById('guestCount').innerText = count;
     }
 
     document.getElementById('realRsvpForm').addEventListener('submit', function(e) {
         document.getElementById('gName').value = document.getElementById('guestName').value;
-        document.getElementById('gGuests').value = count;
+        document.getElementById('gGuests').value = (document.getElementById('btnYes').className.includes('active-yes')) ? count : 0;
+        document.getElementById('gNotes').value = document.getElementById('guestNotes').value;
     });
 </script>
 
