@@ -9,7 +9,6 @@
         body { 
             margin: 0; 
             padding: 20px; 
-            background-color: #f0f2f5; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
@@ -17,15 +16,29 @@
             font-family: 'Assistant', sans-serif; 
             text-align: center;
         }
+        /* הגדרת תמונת הרקע */
+        .watercolor-bg { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover'); 
+            background-size: cover; 
+            background-position: center; 
+            opacity: 0.3; 
+            z-index: -1; /* מוודא שהרקע נשאר מאחור */
+        }
         .card { 
-            background: white; 
+            background: rgba(255, 255, 255, 0.95); 
             padding: 40px 30px; 
             border-radius: 20px; 
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1); 
+            box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15); 
             max-width: 400px; 
             width: 100%; 
+            z-index: 1;
         }
-        h1 { color: #7f1d1d; font-family: 'Arimo', sans-serif; }
+        h1 { color: #7f1d1d; font-family: 'Arimo', sans-serif; margin-top: 0; }
         p { color: #4a5568; font-size: 18px; line-height: 1.6; }
         .back-btn { 
             display: inline-block; 
@@ -35,14 +48,19 @@
             color: white; 
             text-decoration: none; 
             border-radius: 50px; 
+            transition: background 0.3s;
         }
+        .back-btn:hover { background-color: #2e4d68; }
     </style>
 </head>
 <body>
 
+    <!-- תמונת הרקע -->
+    <div class="watercolor-bg"></div>
+
     <div class="card">
         <h1>תודה על העדכון</h1>
-        <p1>מצטערים שלא תוכלו להשתתף בבר המצווה של אוריאל.</p>
+        <p>מצטערים שלא תוכלו להשתתף בבר המצווה של אוריאל.</p>
         <p>נשמח לחגוג יחד בשמחות הבאות!</p>
         <a href="https://yispo.github.io/uriel-bar-mitzvah/" class="back-btn">חזרה לדף הבית</a>
     </div>
