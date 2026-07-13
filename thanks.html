@@ -19,7 +19,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            /* שימוש ב-dvh למרכוז מושלם ללא רווחים */
+            min-height: 100dvh; 
             color: #4a3e3d;
         }
 
@@ -27,7 +28,8 @@
             width: 90%;
             max-width: 420px;
             background: #ffffff;
-            margin: 20px auto;
+            /* הסרת ה-margin כדי לתת ל-flex של ה-body לשלוט במיקום */
+            margin: 0; 
             border-radius: 15px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.05);
             overflow: hidden;
