@@ -61,7 +61,7 @@
                     <button type="button" class="control-btn" onclick="updateCount(1)">+</button>
                 </div>
             </div>
-            <textarea id="guestNotes" class="note-input" placeholder="הערות מיוחדות (רשות)"></textarea>
+            <textarea id="guestNotes" class="note-input" placeholder="הערות מיוחדות"></textarea>
         </div>
 
         <button type="submit" class="submit-btn" id="submitBtn">שליחת אישור הגעה</button>
@@ -73,21 +73,14 @@
 <script>
     var submitted = false;
     let count = 1;
-    let rsvpStatus = ""; // משתנה למעקב אחרי בחירת המשתמש
+    let isAttending = null; // null = לא נבחר עדיין
 
     function toggleSelection(type) {
-        rsvpStatus = type;
-        if(type === 'yes') {
-            document.getElementById('btnYes').className = 'toggle-btn active-yes';
-            document.getElementById('btnNo').className = 'toggle-btn';
-            document.getElementById('detailsSection').style.display = 'block';
-            document.getElementById('noResponseMsg').style.display = 'none';
-        } else {
-            document.getElementById('btnYes').className = 'toggle-btn';
-            document.getElementById('btnNo').className = 'toggle-btn active-no';
-            document.getElementById('detailsSection').style.display = 'none';
-            document.getElementById('noResponseMsg').style.display = 'block';
-        }
+        isAttending = (type === 'yes');
+        document.getElementById('btnYes').className = isAttending ? 'toggle-btn active-yes' : 'toggle-btn';
+        document.getElementById('btnNo').className = !isAttending ? 'toggle-btn active-no' : 'toggle-btn';
+        document.getElementById('detailsSection').style.display = isAttending ? 'block' : 'none';
+        document.getElementById('noResponseMsg').style.display = isAttending ? 'none' : 'block';
     }
 
     function updateCount(val) {
@@ -95,16 +88,16 @@
         document.getElementById('guestCount').innerText = count;
     }
 
-    document.getElementById('realRsvpForm').addEventListener('submit', function(e) {
-        if (!rsvpStatus) {
-            e.preventDefault();
-            alert('נא לבחור אם אתם מגיעים או לא');
-            return;
+    document.getElementById('realRsvpForm').onsubmit = function() {
+        if (isAttending === null) {
+            alert("נא לבחור אם אתם מגיעים או לא.");
+            return false;
         }
         document.getElementById('gName').value = document.getElementById('guestName').value;
-        document.getElementById('gGuests').value = (rsvpStatus === 'yes') ? count : 0;
+        document.getElementById('gGuests').value = isAttending ? count : 0;
         document.getElementById('gNotes').value = document.getElementById('guestNotes').value;
-    });
+        return true;
+    };
 </script>
 
 </body>
