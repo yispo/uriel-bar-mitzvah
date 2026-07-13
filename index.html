@@ -23,7 +23,6 @@
     .counter-section { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
     .control-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #d4af37; background: white; color: #d4af37; cursor: pointer; font-size: 20px; font-weight: bold; }
     .counter-value { font-size: 24px; font-weight: 700; color: #1a2a44; margin: 0 15px; }
-    #noResponseMsg { display: none; color: #7f1d1d; font-weight: bold; margin-bottom: 20px; }
     .submit-btn { background: linear-gradient(135deg, #1a2a44 0%, #2e4d68 100%); color: white; border: none; padding: 12px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; display: none; margin-top: 10px; }
 </style>
 </head>
@@ -54,8 +53,6 @@
             </button>
         </div>
 
-        <div id="noResponseMsg">נשמח לחגוג אתכם בשמחות הבאות</div>
-
         <div id="detailsSection" class="details-section">
             <div class="counter-section">
                 <span style="margin-bottom: 10px; font-weight: bold;">כמה אתם?</span>
@@ -84,7 +81,7 @@
         document.getElementById('btnYes').className = isAttending ? 'toggle-btn active-yes' : 'toggle-btn';
         document.getElementById('btnNo').className = !isAttending ? 'toggle-btn active-no' : 'toggle-btn';
         document.getElementById('detailsSection').style.display = isAttending ? 'block' : 'none';
-        document.getElementById('noResponseMsg').style.display = isAttending ? 'none' : 'block';
+        // כפתור השמירה יוצג תמיד לאחר בחירה
         document.getElementById('submitBtn').style.display = 'block';
     }
 
