@@ -8,55 +8,105 @@
     <style>
         body { 
             margin: 0; 
-            padding: 0; /* הסרת ריווח כדי לאפשר מרכוז מלא */
+            padding: 0;
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            min-height: 100dvh; /* גובה דינמי למובייל */
+            min-height: 100dvh;
             font-family: 'Assistant', sans-serif; 
             text-align: center;
+            /* רקע בהשראת ההזמנה: לבן-קרם עם כתמי זהב וירוק עדינים בקצוות */
+            background-color: #fafbfa;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(135, 156, 139, 0.1) 0%, transparent 40%), /* ירוק עדין */
+                radial-gradient(circle at 90% 90%, rgba(135, 156, 139, 0.1) 0%, transparent 40%), /* ירוק עדין */
+                radial-gradient(circle at 80% 20%, rgba(191, 163, 83, 0.05) 0%, transparent 30%); /* זהב עדין */
+            position: relative;
         }
-        /* הגדרת תמונת הרקע */
-        .watercolor-bg { 
-            position: fixed; 
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%; 
-            background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover'); 
-            background-size: cover; 
-            background-position: center; 
-            opacity: 0.3; 
-            z-index: -1;
+        
+        /* יצירת עלים וקטוריים עדינים בקצוות דרך CSS */
+        body::before, body::after {
+            content: "";
+            position: absolute;
+            opacity: 0.15;
+            z-index: 0;
         }
+        
+        /* עלים עליונים */
+        body::before {
+            top: -50px;
+            left: -50px;
+            width: 300px;
+            height: 300px;
+            background: 
+                radial-gradient(ellipse at 30% 30%, #a7bca7 0%, transparent 60%), /* ירוק */
+                radial-gradient(ellipse at 50% 50%, #bfa353 0%, transparent 70%); /* זהב */
+            border-radius: 50%;
+            filter: blur(40px);
+        }
+        
+        /* עלים תחתונים */
+        body::after {
+            bottom: -50px;
+            right: -50px;
+            width: 350px;
+            height: 350px;
+            background: 
+                radial-gradient(ellipse at 70% 70%, #a7bca7 0%, transparent 60%), /* ירוק */
+                radial-gradient(ellipse at 60% 80%, #bfa353 0%, transparent 70%); /* זהב */
+            border-radius: 50%;
+            filter: blur(50px);
+        }
+        
         .card { 
-            background: rgba(255, 255, 255, 0.95); 
-            padding: 40px 30px; 
+            background: rgba(255, 255, 255, 0.96); 
+            padding: 50px 30px; 
             border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15); 
-            max-width: 400px; 
-            width: 90%; /* שימוש ברוחב יחסי למובייל */
+            box-shadow: 0 20px 40px rgba(58, 83, 64, 0.1); 
+            max-width: 420px; 
+            width: 90%; 
             margin: 0 auto; 
             z-index: 1;
+            position: relative;
+            border: 1px solid rgba(191, 163, 83, 0.15); /* מסגרת זהב דקה */
         }
-        h1 { color: #7f1d1d; font-family: 'Arimo', sans-serif; margin-top: 0; }
-        p { color: #4a5568; font-size: 18px; line-height: 1.6; margin: 10px 0; }
+        
+        h1 { 
+            color: #3a5340; /* ירוק-זית עמוק בהשראת ההזמנה */
+            font-family: 'Arimo', sans-serif; 
+            margin-top: 0; 
+            font-weight: 700;
+        }
+        
+        p { 
+            color: #5a636c; 
+            font-size: 19px; 
+            line-height: 1.6; 
+            margin: 12px 0; 
+        }
+        
         .back-btn { 
             display: inline-block; 
-            margin-top: 20px; 
-            padding: 12px 25px; 
-            background-color: #1a2a44; 
+            margin-top: 25px; 
+            padding: 14px 30px; 
+            background-color: #879c8b; /* ירוק-סירנה רך בהשראת ההזמנה */
             color: white; 
             text-decoration: none; 
             border-radius: 50px; 
-            transition: background 0.3s;
+            transition: all 0.3s;
+            font-weight: 600;
+            border: 1px solid rgba(191, 163, 83, 0.3); /* גבול זהב עדין */
+            box-shadow: 0 4px 6px rgba(135, 156, 139, 0.2);
         }
-        .back-btn:hover { background-color: #2e4d68; }
+        
+        .back-btn:hover { 
+            background-color: #3a5340; /* מעבר לירוק-זית עמוק */
+            box-shadow: 0 6px 12px rgba(58, 83, 64, 0.25);
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
-
-    <div class="watercolor-bg"></div>
 
     <div class="card">
         <h1>תודה על העדכון</h1>
