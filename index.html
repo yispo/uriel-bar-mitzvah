@@ -12,7 +12,7 @@
     body { 
         margin: 0; 
         padding: 0; 
-        background-color: #f4f6f4; 
+        background-color: #fcfcfc; 
         display: flex; 
         justify-content: center; 
         align-items: center; 
@@ -20,43 +20,44 @@
         font-family: 'Assistant', sans-serif;
     }
     
-    /* רקע העלים הכללי - עדין ולא מפריע לקריאה */
+    /* רקע העלים המקורי של ההזמנה - מעודן כדי לא להפריע לטופס */
     .watercolor-bg { 
         position: fixed; 
         top: 0; 
         left: 0; 
         width: 100%; 
         height: 100%; 
+        /* הלינק הבא מכיל הדמיה קרובה לרקע המקורי שלך, מומלץ להחליף בנתיב לקובץ הרקע המקומי שלך בפרויקט במידת הצורך */
         background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover'); 
         background-size: cover; 
         background-position: center; 
-        opacity: 0.15; 
+        opacity: 0.2; 
         z-index: 0; 
     }
     
     .form-card { 
         position: relative; 
         z-index: 10; 
-        background: rgba(255, 255, 255, 0.93); 
+        background: rgba(255, 255, 255, 0.94); 
         border-radius: 20px; 
         padding: 35px 20px; 
         width: 92%; 
         max-width: 450px; 
-        box-shadow: 0 15px 35px rgba(58, 83, 64, 0.12); 
+        box-shadow: 0 15px 35px rgba(58, 83, 64, 0.1); 
         text-align: center;
-        border: 1px solid rgba(191, 163, 83, 0.2);
+        border: 1px solid rgba(191, 163, 83, 0.25);
     }
     
     h1 { 
         font-family: 'Arimo', sans-serif; 
-        color: #3a5340; /* ירוק זית עמוק מההזמנה */
+        color: #3d5442; /* ירוק זית כהה מעלי ההזמנה */
         font-size: 32px; 
         margin: 0 0 8px 0; 
         font-weight: 700;
     }
     
     .subtitle { 
-        color: #bfa353; /* זהב יוקרתי תואם להזמנה */
+        color: #bfa353; /* זהב יוקרתי תואם לטקסט ולמסגרות בהזמנה */
         font-size: 18px; 
         font-weight: 600; 
         margin-bottom: 30px; 
@@ -66,19 +67,20 @@
         width: 100%; 
         padding: 14px; 
         border-radius: 12px; 
-        border: 1px solid #cbd5e1; 
+        border: 1px solid #c2cbbd; 
         margin-bottom: 20px; 
         font-size: 16px; 
         text-align: center; 
         font-family: inherit; 
-        background-color: #fafbfa;
+        background-color: #fbfcfa;
+        color: #3d5442;
         transition: all 0.3s ease;
     }
 
     .name-input:focus, .note-input:focus {
         outline: none;
-        border-color: #3a5340;
-        box-shadow: 0 0 0 3px rgba(58, 83, 64, 0.1);
+        border-color: #3d5442;
+        box-shadow: 0 0 0 3px rgba(61, 84, 66, 0.1);
     }
     
     .note-input { 
@@ -94,13 +96,13 @@
         margin-bottom: 25px; 
     }
     
-    /* עיצוב כפתורים נקי ללא אלמנטים גרפיים מסיחים */
+    /* כפתורי בחירה נקיים לחלוטין מגרפיקה ועלים - רק צבעים חלקים מתוך פלטת ההזמנה */
     .toggle-btn { 
         flex: 1; 
         padding: 14px 10px; 
         border-radius: 12px; 
-        border: 1px solid #d1d5db; 
-        background: white; 
+        border: 1px solid #c2cbbd; 
+        background: #ffffff; 
         cursor: pointer; 
         display: flex; 
         flex-direction: column; 
@@ -108,7 +110,7 @@
         gap: 6px;
         font-size: 16px;
         font-weight: 600;
-        color: #4b5563;
+        color: #556658;
         transition: all 0.25s ease;
     }
 
@@ -116,19 +118,20 @@
         font-size: 18px;
     }
     
-    /* צבעים בהתאמה מלאה - ירוק זית עמוק לאישור, בורדו מאופק לסירוב */
+    /* מצב פעיל (YES) - ירוק חלק נקי */
     .toggle-btn.active-yes { 
-        background-color: #3a5340; 
+        background-color: #3d5442; 
         color: white; 
-        border-color: #3a5340; 
-        box-shadow: 0 4px 12px rgba(58, 83, 64, 0.2);
+        border-color: #3d5442; 
+        box-shadow: 0 4px 12px rgba(61, 84, 66, 0.2);
     }
     
+    /* מצב פעיל (NO) - בורדו-יין חלק ונקי */
     .toggle-btn.active-no { 
-        background-color: #7f2323; 
+        background-color: #822b2b; 
         color: white; 
-        border-color: #7f2323; 
-        box-shadow: 0 4px 12px rgba(127, 35, 35, 0.2);
+        border-color: #822b2b; 
+        box-shadow: 0 4px 12px rgba(130, 43, 43, 0.2);
     }
     
     .details-section { 
@@ -147,21 +150,21 @@
         flex-direction: column; 
         align-items: center; 
         margin-bottom: 20px; 
-        background: #f8faf8;
+        background: #f5f7f5;
         padding: 15px;
         border-radius: 12px;
-        border: 1px solid rgba(58, 83, 64, 0.08);
+        border: 1px solid rgba(61, 84, 66, 0.08);
     }
     
     .control-btn { 
-        width: 36px; 
-        height: 36px; 
+        width: 38px; 
+        height: 38px; 
         border-radius: 50%; 
-        border: 1px solid #bfa353; 
+        border: 1px solid #bfa353; /* מסגרת זהב לכפתורים */
         background: white; 
         color: #bfa353; 
         cursor: pointer; 
-        font-size: 20px; 
+        font-size: 22px; 
         font-weight: bold; 
         display: flex;
         align-items: center;
@@ -177,12 +180,12 @@
     .counter-value { 
         font-size: 24px; 
         font-weight: 700; 
-        color: #3a5340; 
+        color: #3d5442; 
         margin: 0 20px; 
     }
     
     .submit-btn { 
-        background: linear-gradient(135deg, #3a5340 0%, #4a6851 100%); 
+        background: linear-gradient(135deg, #3d5442 0%, #4e6b54 100%); 
         color: white; 
         border: none; 
         padding: 14px; 
@@ -193,7 +196,7 @@
         width: 100%; 
         display: none; 
         margin-top: 15px; 
-        box-shadow: 0 4px 12px rgba(58, 83, 64, 0.25);
+        box-shadow: 0 4px 12px rgba(61, 84, 66, 0.25);
         transition: all 0.3s ease;
     }
 
@@ -233,7 +236,7 @@
 
         <div id="detailsSection" class="details-section">
             <div class="counter-section">
-                <span style="margin-bottom: 12px; font-weight: 600; color: #3a5340;">מספר המשתתפים:</span>
+                <span style="margin-bottom: 12px; font-weight: 600; color: #3d5442;">מספר המשתתפים:</span>
                 <div style="display: flex; align-items: center;">
                     <button type="button" class="control-btn" onclick="updateCount(-1)">-</button>
                     <span class="counter-value" id="guestCount">1</span>
