@@ -8,32 +8,199 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
     * { box-sizing: border-box; }
-    /* שינוי ה-body למרכוז מלא ומדויק ללא רווחים מיותרים */
+    
     body { 
         margin: 0; 
         padding: 0; 
-        background-color: #f0f2f5; 
+        background-color: #f4f6f4; 
         display: flex; 
         justify-content: center; 
         align-items: center; 
         min-height: 100dvh; 
         font-family: 'Assistant', sans-serif;
     }
-    .watercolor-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover'); background-size: cover; background-position: center; opacity: 0.3; z-index: 0; }
-    .form-card { position: relative; z-index: 10; background: rgba(255, 255, 255, 0.95); border-radius: 20px; padding: 25px 15px; width: 95%; max-width: 480px; box-shadow: 0 15px 35px rgba(26, 42, 68, 0.15); text-align: center; }
-    h1 { font-family: 'Arimo', sans-serif; color: #1a2a44; font-size: 32px; margin: 0 0 5px 0; }
-    .subtitle { color: #d4af37; font-size: 18px; font-weight: 600; margin-bottom: 20px; }
-    .name-input, .note-input { width: 100%; padding: 12px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 15px; font-size: 16px; text-align: center; font-family: inherit; }
-    .note-input { height: 80px; resize: none; text-align: right; }
-    .rsvp-toggle { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; }
-    .toggle-btn { flex: 1; padding: 10px; border-radius: 12px; border: 2px solid #e2e8f0; background: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; }
-    .toggle-btn.active-yes { background-color: #1a2a44; color: white; border-color: #1a2a44; }
-    .toggle-btn.active-no { background-color: #7f1d1d; color: white; border-color: #7f1d1d; }
-    .details-section { display: none; margin-bottom: 20px; }
-    .counter-section { display: flex; flex-direction: column; align-items: center; margin-bottom: 15px; }
-    .control-btn { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #d4af37; background: white; color: #d4af37; cursor: pointer; font-size: 20px; font-weight: bold; }
-    .counter-value { font-size: 24px; font-weight: 700; color: #1a2a44; margin: 0 15px; }
-    .submit-btn { background: linear-gradient(135deg, #1a2a44 0%, #2e4d68 100%); color: white; border: none; padding: 12px; font-weight: 700; border-radius: 50px; cursor: pointer; width: 100%; display: none; margin-top: 10px; }
+    
+    /* רקע העלים הכללי - עדין ולא מפריע לקריאה */
+    .watercolor-bg { 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background-image: url('https://images.unsplash.com/photo-1525310072745-f49212b5ac6d?q=80&w=1000&auto=format&fit=cover'); 
+        background-size: cover; 
+        background-position: center; 
+        opacity: 0.15; 
+        z-index: 0; 
+    }
+    
+    .form-card { 
+        position: relative; 
+        z-index: 10; 
+        background: rgba(255, 255, 255, 0.93); 
+        border-radius: 20px; 
+        padding: 35px 20px; 
+        width: 92%; 
+        max-width: 450px; 
+        box-shadow: 0 15px 35px rgba(58, 83, 64, 0.12); 
+        text-align: center;
+        border: 1px solid rgba(191, 163, 83, 0.2);
+    }
+    
+    h1 { 
+        font-family: 'Arimo', sans-serif; 
+        color: #3a5340; /* ירוק זית עמוק מההזמנה */
+        font-size: 32px; 
+        margin: 0 0 8px 0; 
+        font-weight: 700;
+    }
+    
+    .subtitle { 
+        color: #bfa353; /* זהב יוקרתי תואם להזמנה */
+        font-size: 18px; 
+        font-weight: 600; 
+        margin-bottom: 30px; 
+    }
+    
+    .name-input, .note-input { 
+        width: 100%; 
+        padding: 14px; 
+        border-radius: 12px; 
+        border: 1px solid #cbd5e1; 
+        margin-bottom: 20px; 
+        font-size: 16px; 
+        text-align: center; 
+        font-family: inherit; 
+        background-color: #fafbfa;
+        transition: all 0.3s ease;
+    }
+
+    .name-input:focus, .note-input:focus {
+        outline: none;
+        border-color: #3a5340;
+        box-shadow: 0 0 0 3px rgba(58, 83, 64, 0.1);
+    }
+    
+    .note-input { 
+        height: 90px; 
+        resize: none; 
+        text-align: right; 
+    }
+    
+    .rsvp-toggle { 
+        display: flex; 
+        justify-content: center; 
+        gap: 12px; 
+        margin-bottom: 25px; 
+    }
+    
+    /* עיצוב כפתורים נקי ללא אלמנטים גרפיים מסיחים */
+    .toggle-btn { 
+        flex: 1; 
+        padding: 14px 10px; 
+        border-radius: 12px; 
+        border: 1px solid #d1d5db; 
+        background: white; 
+        cursor: pointer; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        gap: 6px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #4b5563;
+        transition: all 0.25s ease;
+    }
+
+    .toggle-btn i {
+        font-size: 18px;
+    }
+    
+    /* צבעים בהתאמה מלאה - ירוק זית עמוק לאישור, בורדו מאופק לסירוב */
+    .toggle-btn.active-yes { 
+        background-color: #3a5340; 
+        color: white; 
+        border-color: #3a5340; 
+        box-shadow: 0 4px 12px rgba(58, 83, 64, 0.2);
+    }
+    
+    .toggle-btn.active-no { 
+        background-color: #7f2323; 
+        color: white; 
+        border-color: #7f2323; 
+        box-shadow: 0 4px 12px rgba(127, 35, 35, 0.2);
+    }
+    
+    .details-section { 
+        display: none; 
+        margin-bottom: 25px; 
+        animation: fadeIn 0.4s ease forwards;
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-5px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .counter-section { 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        margin-bottom: 20px; 
+        background: #f8faf8;
+        padding: 15px;
+        border-radius: 12px;
+        border: 1px solid rgba(58, 83, 64, 0.08);
+    }
+    
+    .control-btn { 
+        width: 36px; 
+        height: 36px; 
+        border-radius: 50%; 
+        border: 1px solid #bfa353; 
+        background: white; 
+        color: #bfa353; 
+        cursor: pointer; 
+        font-size: 20px; 
+        font-weight: bold; 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s ease;
+    }
+
+    .control-btn:active {
+        background-color: #bfa353;
+        color: white;
+    }
+    
+    .counter-value { 
+        font-size: 24px; 
+        font-weight: 700; 
+        color: #3a5340; 
+        margin: 0 20px; 
+    }
+    
+    .submit-btn { 
+        background: linear-gradient(135deg, #3a5340 0%, #4a6851 100%); 
+        color: white; 
+        border: none; 
+        padding: 14px; 
+        font-weight: 700; 
+        font-size: 18px;
+        border-radius: 50px; 
+        cursor: pointer; 
+        width: 100%; 
+        display: none; 
+        margin-top: 15px; 
+        box-shadow: 0 4px 12px rgba(58, 83, 64, 0.25);
+        transition: all 0.3s ease;
+    }
+
+    .submit-btn:hover {
+        opacity: 0.95;
+        transform: translateY(-1px);
+    }
 </style>
 </head>
 <body>
@@ -52,30 +219,31 @@
     <div class="form-card">
         <h1>אישור הגעה</h1>
         <div class="subtitle">נשמח לראותכם בין אורחינו בבר המצווה</div>
-        <input type="text" id="guestName" class="name-input" placeholder="שם מלא" required>
+        
+        <input type="text" id="guestName" class="name-input" placeholder="שם מלא" required autocomplete="off">
 
         <div class="rsvp-toggle">
             <button type="button" class="toggle-btn" id="btnYes" onclick="toggleSelection('yes')">
-                <i class="fa-solid fa-check"></i> <span>נגיע!</span>
+                <i class="fa-solid fa-check"></i> <span>נגיע בשמחה</span>
             </button>
             <button type="button" class="toggle-btn" id="btnNo" onclick="toggleSelection('no')">
-                <i class="fa-solid fa-xmark"></i> <span>לא נגיע</span>
+                <i class="fa-solid fa-xmark"></i> <span>לא נוכל להגיע</span>
             </button>
         </div>
 
         <div id="detailsSection" class="details-section">
             <div class="counter-section">
-                <span style="margin-bottom: 10px; font-weight: bold;">כמה אתם?</span>
+                <span style="margin-bottom: 12px; font-weight: 600; color: #3a5340;">מספר המשתתפים:</span>
                 <div style="display: flex; align-items: center;">
                     <button type="button" class="control-btn" onclick="updateCount(-1)">-</button>
                     <span class="counter-value" id="guestCount">1</span>
                     <button type="button" class="control-btn" onclick="updateCount(1)">+</button>
                 </div>
             </div>
-            <textarea id="guestNotes" class="note-input" placeholder="הערות מיוחדות"></textarea>
+            <textarea id="guestNotes" class="note-input" placeholder="הערות מיוחדות / ברכות לחוגג..."></textarea>
         </div>
 
-        <button type="submit" class="submit-btn" id="submitBtn">שמירה</button>
+        <button type="submit" class="submit-btn" id="submitBtn">שמירת אישור הגעה</button>
     </div>
 </form>
 
