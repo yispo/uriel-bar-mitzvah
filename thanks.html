@@ -13,12 +13,11 @@
         body {
             margin: 0;
             padding: 0;
-            /* רקע משולב בהשראת ההזמנה: לבן-קרם עם כתמי זהב וירוק עדינים בקצוות */
-            background-color: #fafbfa;
-            background-image: 
-                radial-gradient(circle at 10% 10%, rgba(135, 156, 139, 0.1) 0%, transparent 40%), /* ירוק עדין */
-                radial-gradient(circle at 90% 90%, rgba(135, 156, 139, 0.1) 0%, transparent 40%), /* ירוק עדין */
-                radial-gradient(circle at 80% 20%, rgba(191, 163, 83, 0.05) 0%, transparent 30%); /* זהב עדין */
+            /* הגדרת תמונת הרקע bp.png במקום הגרדיאנט הישן */
+            background-image: url('bp.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             position: relative;
             font-family: 'Assistant', sans-serif;
             display: flex;
@@ -162,7 +161,8 @@
             
             <p>אישורכם התקבל בהצלחה</p>
             
-               <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=בר+מצווה+אוריאל+פולק&dates=20260901T170000Z/20260901T200000Z&details=נשמח+לראותכם+בין+אורחינו+בבר+המצווה&location=אולם+שבט+הלוי,+רחוב+נחל+שורק+25,+בית+שמש&pli=1&sf=true&output=xml#eventpage_6" target="_blank" class="calendar-btn">
+            <!-- קישור יומן גוגל מעודכן ומקודד למניעת שבירת לינקים -->
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=%d7%91%d7%a3+%d7%9e%d7%a6%d7%95%d7%94+%d7%90%d7%a8%d7%99%d7%90%d7%9c+%d7%a4%d7%9c%d7%a7&dates=20260901T170000Z/20260901T200000Z&details=%d7%a0%d7%9e%d7%97+%d7%9c%d7%a8%d7%90%d7%aa%d7%9b%d7%9d+%d7%91%d7%99%d7%9f+%d7%90%d7%a8%d7%97%d7%99%d7%a0+%d7%91%d7%91%d7%a3+%d7%94%d7%9e%d7%a6%d7%95%d7%94&location=%d7%90%d7%9c%d7%9d+%d7%a9%d7%9比%d7%94%d7%9c%d7%95%d7%99,+%d7%a8%d7%97%d7%91+%d7%a0%d7%97%d7%9c+%d7%a9%d7%a8%d7%a7+25,+%d7%91%d7%99%d7%aa+%d7%a9%d7%9e%d7%a9" target="_blank" class="calendar-btn">
                 שמירה ליומן Google 📅
             </a>
             
