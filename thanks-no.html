@@ -15,71 +15,74 @@
             min-height: 100dvh;
             font-family: 'Assistant', sans-serif; 
             text-align: center;
-            /* רקע בהשראת ההזמנה: לבן-קרם עם כתמי זהב וירוק עדינים בקצוות */
-            background-color: #fafbfa;
+            /* רקע משולב בהשראת ההזמנה: לבן-קרם עם כתמי זהב וירוק עדינים */
+            background-color: #f7f9f7;
             background-image: 
-                radial-gradient(circle at 10% 10%, rgba(135, 156, 139, 0.1) 0%, transparent 40%), /* ירוק עדין */
-                radial-gradient(circle at 90% 90%, rgba(135, 156, 139, 0.1) 0%, transparent 40%), /* ירוק עדין */
-                radial-gradient(circle at 80% 20%, rgba(191, 163, 83, 0.05) 0%, transparent 30%); /* זהב עדין */
+                radial-gradient(circle at 15% 15%, rgba(135, 156, 139, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 85% 85%, rgba(135, 156, 139, 0.15) 0%, transparent 45%),
+                radial-gradient(circle at 80% 20%, rgba(191, 163, 83, 0.08) 0%, transparent 35%);
             position: relative;
+            overflow: hidden;
         }
         
-        /* יצירת עלים וקטוריים עדינים בקצוות דרך CSS */
+        /* יצירת עלים וקטוריים עדינים בקצוות (סגנון גינקו) דרך CSS */
         body::before, body::after {
             content: "";
             position: absolute;
-            opacity: 0.15;
+            opacity: 0.18;
             z-index: 0;
         }
         
         /* עלים עליונים */
         body::before {
-            top: -50px;
-            left: -50px;
-            width: 300px;
-            height: 300px;
+            top: -60px;
+            left: -60px;
+            width: 350px;
+            height: 350px;
             background: 
-                radial-gradient(ellipse at 30% 30%, #a7bca7 0%, transparent 60%), /* ירוק */
-                radial-gradient(ellipse at 50% 50%, #bfa353 0%, transparent 70%); /* זהב */
+                radial-gradient(ellipse at 40% 40%, #c0cac0 0%, transparent 65%), /* ירוק-סירנה */
+                radial-gradient(ellipse at 60% 60%, #e0d0a0 0%, transparent 70%); /* זהב חיוור */
             border-radius: 50%;
             filter: blur(40px);
         }
         
         /* עלים תחתונים */
         body::after {
-            bottom: -50px;
-            right: -50px;
-            width: 350px;
-            height: 350px;
+            bottom: -70px;
+            right: -70px;
+            width: 400px;
+            height: 400px;
             background: 
-                radial-gradient(ellipse at 70% 70%, #a7bca7 0%, transparent 60%), /* ירוק */
-                radial-gradient(ellipse at 60% 80%, #bfa353 0%, transparent 70%); /* זהב */
+                radial-gradient(ellipse at 60% 60%, #c0cac0 0%, transparent 65%), /* ירוק-סירנה */
+                radial-gradient(ellipse at 50% 70%, #e0d0a0 0%, transparent 70%); /* זהב חיוור */
             border-radius: 50%;
             filter: blur(50px);
         }
         
         .card { 
             background: rgba(255, 255, 255, 0.96); 
-            padding: 50px 30px; 
-            border-radius: 20px; 
-            box-shadow: 0 20px 40px rgba(58, 83, 64, 0.1); 
+            padding: 50px 35px; 
+            border-radius: 24px; 
+            box-shadow: 0 20px 45px rgba(58, 83, 64, 0.1); 
             max-width: 420px; 
             width: 90%; 
             margin: 0 auto; 
             z-index: 1;
             position: relative;
-            border: 1px solid rgba(191, 163, 83, 0.15); /* מסגרת זהב דקה */
+            /* מסגרת זהב דקה בהשראת ההזמנה */
+            border: 1px solid rgba(191, 163, 83, 0.2); 
         }
         
         h1 { 
-            color: #3a5340; /* ירוק-זית עמוק בהשראת ההזמנה */
+            color: #3a5340; /* ירוק-זית עמוק מההזמנה */
             font-family: 'Arimo', sans-serif; 
             margin-top: 0; 
             font-weight: 700;
+            letter-spacing: -0.5px;
         }
         
         p { 
-            color: #5a636c; 
+            color: #5a636c; /* אפור-כחלחל עדין יותר */
             font-size: 19px; 
             line-height: 1.6; 
             margin: 12px 0; 
@@ -88,20 +91,20 @@
         .back-btn { 
             display: inline-block; 
             margin-top: 25px; 
-            padding: 14px 30px; 
-            background-color: #879c8b; /* ירוק-סירנה רך בהשראת ההזמנה */
+            padding: 15px 35px; 
+            background-color: #879c8b; /* ירוק-זית בהיר מההזמנה */
             color: white; 
             text-decoration: none; 
             border-radius: 50px; 
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             font-weight: 600;
-            border: 1px solid rgba(191, 163, 83, 0.3); /* גבול זהב עדין */
-            box-shadow: 0 4px 6px rgba(135, 156, 139, 0.2);
+            border: 1px solid rgba(191, 163, 83, 0.4); /* גבול זהב עדין בכפתור */
+            box-shadow: 0 4px 10px rgba(135, 156, 139, 0.3);
         }
         
         .back-btn:hover { 
             background-color: #3a5340; /* מעבר לירוק-זית עמוק */
-            box-shadow: 0 6px 12px rgba(58, 83, 64, 0.25);
+            box-shadow: 0 6px 15px rgba(58, 83, 64, 0.35);
             transform: translateY(-2px);
         }
     </style>
@@ -110,7 +113,7 @@
 
     <div class="card">
         <h1>תודה על העדכון</h1>
-        <p>מצטערים שלא תוכלו להשתתף בבר המצווה של אוריאל.</p>
+        <p>מצטערים שלא תוכלו להשתתף בבר המצווה של אוריאל</p>
         <p>נשמח לחגוג יחד בשמחות הבאות!</p>
         <a href="https://yispo.github.io/uriel-bar-mitzvah/" class="back-btn">חזרה לדף הבית</a>
     </div>
