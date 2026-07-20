@@ -13,12 +13,7 @@
         body {
             margin: 0;
             padding: 0;
-            /* הגדרת תמונת הרקע bp.png במקום הגרדיאנט הישן */
-            background-image: url('bp.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
+            background-color: #fcfcfc; /* צבע רקע זהה לחלוטין לשאר הדפים */
             font-family: 'Assistant', sans-serif;
             display: flex;
             justify-content: center;
@@ -26,53 +21,34 @@
             min-height: 100dvh; 
             color: #4a5568;
             overflow: hidden;
+            position: relative;
         }
 
-        /* יצירת עלים וקטוריים עדינים בקצוות דרך CSS */
-        body::before, body::after {
-            content: "";
-            position: absolute;
-            opacity: 0.15;
-            z-index: 0;
-        }
-        
-        /* עלים עליונים */
-        body::before {
-            top: -50px;
-            left: -50px;
-            width: 300px;
-            height: 300px;
-            background: 
-                radial-gradient(ellipse at 30% 30%, #a7bca7 0%, transparent 60%), /* ירוק */
-                radial-gradient(ellipse at 50% 50%, #bfa353 0%, transparent 70%); /* זהב */
-            border-radius: 50%;
-            filter: blur(40px);
-        }
-        
-        /* עלים תחתונים */
-        body::after {
-            bottom: -50px;
-            right: -50px;
-            width: 350px;
-            height: 350px;
-            background: 
-                radial-gradient(ellipse at 70% 70%, #a7bca7 0%, transparent 60%), /* ירוק */
-                radial-gradient(ellipse at 60% 80%, #bfa353 0%, transparent 70%); /* זהב */
-            border-radius: 50%;
-            filter: blur(50px);
+        /* רקע העלים - תואם ב-100% לשאר הדפים ברמת שקיפות מאוזנת של 45% */
+        .watercolor-bg { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background-image: url('bp.png'); 
+            background-size: cover; 
+            background-position: center; 
+            opacity: 0.45; /* אחידות מלאה */
+            z-index: 0; 
         }
 
         .card-container {
             width: 90%;
             max-width: 420px;
-            background: rgba(255, 255, 255, 0.96); 
+            background: rgba(255, 255, 255, 0.95); /* מוגן ומובלט מעל הרקע */
             margin: 0; 
             border-radius: 20px; 
-            box-shadow: 0 20px 40px rgba(58, 83, 64, 0.1); 
+            box-shadow: 0 20px 40px rgba(58, 83, 64, 0.12); 
             overflow: hidden;
-            z-index: 1;
+            z-index: 10;
             position: relative;
-            border: 1px solid rgba(191, 163, 83, 0.15); /* מסגרת זהב דקה */
+            border: 1px solid rgba(191, 163, 83, 0.25); /* מסגרת זהב תואמת ואחידה */
         }
 
         .card-content {
@@ -89,7 +65,7 @@
         }
 
         h1 {
-            color: #3a5340; /* ירוק-זית עמוק בהשראת ההזמנה */
+            color: #3d5442; /* צבע ירוק זית אחיד */
             font-family: 'Arimo', sans-serif; 
             margin: 0 0 20px 0; 
             font-weight: 700;
@@ -107,38 +83,36 @@
 
         .calendar-btn {
             display: inline-block;
-            background-color: #879c8b; /* ירוק-סירנה רך בהשראת ההזמנה */
+            background: linear-gradient(135deg, #3d5442 0%, #4e6b54 100%); /* עיצוב כפתור יציב ומקצועי */
             color: #ffffff !important;
             text-decoration: none;
             padding: 14px 30px;
             font-size: 16px;
             font-weight: 600;
             border-radius: 50px; 
-            transition: all 0.3s;
-            border: 1px solid rgba(191, 163, 83, 0.3); /* גבול זהב עדין */
-            box-shadow: 0 4px 6px rgba(135, 156, 139, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(61, 84, 66, 0.25);
             margin: 10px auto 25px auto;
             width: auto;
             max-width: 90%;
+            border: none;
         }
 
         .calendar-btn:hover { 
-            background-color: #3a5340; /* מעבר לירוק-זית עמוק */
-            box-shadow: 0 6px 12px rgba(58, 83, 64, 0.25);
-            transform: translateY(-2px);
+            opacity: 0.95;
+            transform: translateY(-1px);
         }
 
         .calendar-btn:active {
-            background-color: #3a5340;
             transform: translateY(0);
         }
 
         .signature {
-            color: #3a5340; /* ירוק-זית עמוק */
+            color: #3d5442; 
             font-size: 20px;
             margin-top: 15px;
             font-weight: 600;
-            border-top: 1px dashed rgba(191, 163, 83, 0.15); /* גבול זהב מרוסק עדין */
+            border-top: 1px dashed rgba(191, 163, 83, 0.15); 
             padding-top: 20px;
             display: inline-block;
             width: 80%;
@@ -147,11 +121,14 @@
         .icon {
             margin-top: 20px;
             font-size: 22px;
-            color: #bfa353; /* זהב */
+            color: #bfa353; 
         }
     </style>
 </head>
 <body>
+
+    <!-- שכבת הרקע האחידה -->
+    <div class="watercolor-bg"></div>
 
     <div class="card-container">
         <div class="card-content">
@@ -162,7 +139,7 @@
             <p>אישורכם התקבל בהצלחה</p>
             
             <!-- קישור יומן גוגל מעודכן ומקודד למניעת שבירת לינקים -->
-            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=%d7%91%d7%a3+%d7%9e%d7%a6%d7%95%d7%94+%d7%90%d7%a8%d7%99%d7%90%d7%9c+%d7%a4%d7%9c%d7%a7&dates=20260901T170000Z/20260901T200000Z&details=%d7%a0%d7%9e%d7%97+%d7%9c%d7%a8%d7%90%d7%aa%d7%9b%d7%9d+%d7%91%d7%99%d7%9f+%d7%90%d7%a8%d7%97%d7%99%d7%a0+%d7%91%d7%91%d7%a3+%d7%94%d7%9e%d7%a6%d7%95%d7%94&location=%d7%90%d7%9c%d7%9d+%d7%a9%d7%9比%d7%94%d7%9c%d7%95%d7%99,+%d7%a8%d7%97%d7%91+%d7%a0%d7%97%d7%9c+%d7%a9%d7%a8%d7%a7+25,+%d7%91%d7%99%d7%aa+%d7%a9%d7%9e%d7%a9" target="_blank" class="calendar-btn">
+            <a href="https://www.google.com/calendar/render?action=TEMPLATE&text=%d7%91%d7%a3+%d7%9e%d7%a6%d7%95%d7%94+%d7%90%d7%a8%d7%99%d7%90%d7%9c+%d7%a4%d7%9c%d7%a7&dates=20260901T170000Z/20260901T200000Z&details=%d7%a0%d7%9e%d7%97+%d7%9c%d7%a8%d7%90%d7%aa%d7%9b%d7%9d+%d7%9比%d7%9f+%d7%90%d7%a8%d7%97%d7%99%d7%a0+%d7%91%d7%91%d7%a3+%d7%94%d7%9e%d7%a6%d7%95%d7%94&location=%d7%90%d7%9c%d7%9d+%d7%a9%d7%9比%d7%94%d7%9c%d7%95%d7%99,+%d7%a8%d7%97%d7%91+%d7%a0%d7%97%d7%9c+%d7%a9%d7%a8%d7%a7+25,+%d7%91%d7%99%d7%aa+%d7%a9%d7%9e%d7%a9" target="_blank" class="calendar-btn">
                 שמירה ליומן Google 📅
             </a>
             
